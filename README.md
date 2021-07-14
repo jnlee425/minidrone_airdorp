@@ -117,9 +117,9 @@
             
 #### 드론이 링과 보라색 표식 사이에 위치하게 되면 그 자리에 착지하는 코드 
            drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+           sleep(1)
 
-            drone.sendLanding()
-            sleep(5)
-            drone.close()
-            break
+           drone.sendLanding()
+           sleep(5)
+           drone.close()
+           break
