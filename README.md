@@ -103,7 +103,7 @@
                         break                       
 
 #### 드론이 링과 빨간색 표식 사이에 위치하게 되면 90도 회전한 후 직진하는 코드 
-               drone.sendControlWhile(0,0,0,0,1000) #호버링
+            drone.sendControlWhile(0,0,0,0,1000) #호버링
             sleep(1)
 
             drone.sendControlPosition16(0, 0, 0, 0, 90, 30) #왼쪽으로 90도 회전
