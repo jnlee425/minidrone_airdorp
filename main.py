@@ -57,9 +57,7 @@ def find_blue(img_hsv):
     if value_th[1]==0 or value_th[0]==0 :
         return 0
     else :
-        return 1
-
-    
+        return 1 
     
 def check_position(img_hsv):
     img_mask_blue = cv2.inRange(img_hsv, lower_blue, upper_blue)
@@ -83,25 +81,6 @@ def check_position(img_hsv):
         return 1,1
     else :
         return 0,0
-
-def find_red_center(img_hsv):
-    img_mask_red1 = cv2.inRange(img_hsv, lower_red1, upper_red1)
-    img_mask_red2 = cv2.inRange(img_hsv, lower_red2, upper_red2)
-    img_mask_red = cv2.add(img_mask_red1, img_mask_red2)
-    dilation_red = cv2.morphologyEx(img_mask_red, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
-    dilation_red = cv2.dilate(dilation_red, np.ones((7, 7), np.uint8), iterations=1)
-    img_red = cv2.medianBlur(dilation_red, 7)
-    value_th=np.where(img_red[:, :] == 255)
-
-    min_x = np.min(value_th[1])
-    max_x = np.max(value_th[1])
-    min_y = np.min(value_th[0])
-    max_y = np.max(value_th[0])
-    center_x = (min_x + max_x) / 2
-    center_y = (min_y + max_y) / 2
-
-    return center_x, center_y
-
 
     
 #main
@@ -141,7 +120,7 @@ try:
                 cx,cy = find_center(img_hsv) #파란색 천의 중심좌표
                 
                 if cx == 0 and cy == -1 : #원의 오른쪽이 안보이는 경우
-                    drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동 (얼만큼 움직일지 수정 필요)
+                    drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동 
                     sleep(1)
                     continue
                 elif cx == 0 and cy == -2 : #원의 왼쪽이 안보이는 경우
@@ -161,28 +140,28 @@ try:
 
             #드론 카메라의 중심과 파란색 천의 중심좌표를 비교해서 드론 위치 이동시키기
                     
-            if cx < 320-50 : #(값의 범위 수정 필요)
+            if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)                    
-            elif cx > 320+50 :
+            elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)
-            elif cy > 240+30 :
+            elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                 sleep(1)
-            elif cy < 240-30 :
+            elif cy < 240-50 :
                 drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                 sleep(1)
             else :
@@ -195,12 +174,12 @@ try:
                 while():
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
-                        drone.sendControlPosition16(2, 0, 0, 5, 0, 0) #앞으로 0.2미터 이동
+                        drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
                         sleep(1)
                         continue
                     else :
-                        drone.sendControlPosition16(16, 0, 0, 5, 0, 0) #앞으로 1.6미터 이동 (원이 안 보인 후 몇 미터 가야하는지 체크 필요)
-                        sleep(2)
+                        drone.sendControlPosition16(16, 0, 0, 5, 0, 0) #앞으로 1.6미터 이동 
+                        sleep(3)
                         know_center = 0
                         step = 2
                         break                       
@@ -252,28 +231,28 @@ try:
 
              #드론 카메라의 중심과 파란색 천의 중심좌표를 비교해서 드론 위치 이동시키기
                     
-            if cx < 320-50 : #(값의 범위 수정 필요)
+            if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)                    
-            elif cx > 320+50 :
+            elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)
-            elif cy > 240+30 :
+            elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                sleep(1)
-            elif cy < 240-30 :
+                    sleep(1)
+            elif cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
             else :
@@ -286,11 +265,11 @@ try:
                 while():
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
-                        drone.sendControlPosition16(2, 0, 0, 5, 0, 0) #앞으로 0.2미터 이동
+                        drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
                         sleep(1)
                         continue
                     else :
-                        drone.sendControlPosition16(11, 0, 0, 5, 0, 0) #앞으로 1미터 이동 (원이 안 보인 후 몇 미터 가야하는지 체크 필요)
+                        drone.sendControlPosition16(11, 0, 0, 5, 0, 0) #앞으로 1.1미터 이동 
                         sleep(2)
                         know_center = 0
                         step = 4
@@ -306,7 +285,7 @@ try:
             drone.sendControlWhile(0,0,0,0,2000) #호버링
             sleep(2)
 
-            drone.sendControlPosition16(8, 0, 0, 5, 0, 0) #앞으로 0.8미터 이동
+            drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동
             sleep(2)
             step = 5
             find = True
@@ -365,6 +344,9 @@ try:
 
                                 if blue==0 :
                                     print('there is no blue')
+                                    drone.sendLanding()
+                                    sleep(5)
+                                    break
 
                                 else :
                                     continue
@@ -410,28 +392,28 @@ try:
 
              #드론 카메라의 중심과 파란색 천의 중심좌표를 비교해서 드론 위치 이동시키기
                     
-            if cx < 320-50 : #(값의 범위 수정 필요)
+            if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)                    
-            elif cx > 320+50 :
+            elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
                 sleep(1)
-                if cy < 240-30 :
+                if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
-                elif cy > 240+30 :
+                elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                     sleep(1)
-            elif cy > 240+30 :
+            elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                sleep(1)
-            elif cy < 240-30 :
+                    sleep(1)
+            elif cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
                     sleep(1)
             else :
@@ -444,11 +426,11 @@ try:
                 while():
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
-                        drone.sendControlPosition16(2, 0, 0, 5, 0, 0) #앞으로 0.2미터 이동
+                        drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
                         sleep(1)
                         continue
                     else :
-                        drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동 (원이 안 보인 후 몇 미터 가야하는지 체크 필요)
+                        drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동 
                         sleep(2)
                         know_center = 0
                         step = 6
