@@ -111,7 +111,7 @@ try:
         if step==1 : #1, 1단계 파란색 천의 중심 찾기
             
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             #파란색 천 중심좌표 찾기
             
@@ -121,19 +121,19 @@ try:
                 
                 if cx == 0 and cy == -1 : #원의 오른쪽이 안보이는 경우
                     drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동 
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == 0 and cy == -2 : #원의 왼쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -1 and cy == 0 : #원의 위쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -2 and cy == 0 : #원의 아래쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 else :
                     find = False 
@@ -142,28 +142,28 @@ try:
                     
             if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)                    
+                    sleep(5)                    
             elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
             elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                sleep(1)
+                sleep(5)
             elif cy < 240-50 :
                 drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                sleep(1)
+                sleep(5)
             else :
                 know_center = 1
 
@@ -175,11 +175,11 @@ try:
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
                         drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
-                        sleep(1)
+                        sleep(5)
                         continue
                     else :
                         drone.sendControlPosition16(16, 0, 0, 5, 0, 0) #앞으로 1.6미터 이동 
-                        sleep(3)
+                        sleep(5)
                         know_center = 0
                         step = 2
                         break                       
@@ -187,16 +187,16 @@ try:
         elif step==2 : #2, 빨간색 네모 찾기
             
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             drone.sendControlPosition16(0, 0, 0, 0, 90, 30) #왼쪽으로 90도 회전
-            sleep(3)
+            sleep(5)
 
             drone.sendControlWhile(0,0,0,0,2000) #호버링
-            sleep(2)
+            sleep(5)
 
             drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동
-            sleep(2)
+            sleep(5)
             
             step = 3
             find = True
@@ -204,7 +204,7 @@ try:
         elif step==3 : #3, 2단계 파란색 천의 중심찾기
             
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             while(find):
                 
@@ -212,19 +212,19 @@ try:
                 
                 if cx == 0 and cy == -1 : #원의 오른쪽이 안보이는 경우
                     drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == 0 and cy == -2 : #원의 왼쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -1 and cy == 0 : #원의 위쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -2 and cy == 0 : #원의 아래쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 else :
                     find = False
@@ -233,28 +233,28 @@ try:
                     
             if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)                    
+                    sleep(5)                    
             elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
             elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                sleep(1)
+                sleep(5)
             elif cy < 240-50 :
                 drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                sleep(1)
+                sleep(5)
             else :
                 know_center = 1
 
@@ -266,79 +266,79 @@ try:
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
                         drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
-                        sleep(1)
+                        sleep(5)
                         continue
                     else :
                         drone.sendControlPosition16(11, 0, 0, 5, 0, 0) #앞으로 1.1미터 이동 
-                        sleep(2)
+                        sleep(5)
                         know_center = 0
                         step = 4
                         break                       
 
         elif step==4 : #4, 빨간색 네모 찾기
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             drone.sendControlPosition16(0, 0, 0, 0, 90, 30) #왼쪽으로 90도 회전
-            sleep(3)
+            sleep(5)
 
             drone.sendControlWhile(0,0,0,0,2000) #호버링
-            sleep(2)
+            sleep(5)
 
             drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동
-            sleep(2)
+            sleep(5)
             step = 5
             find = True
 
         elif step==5 : #5, 3단계 파란색 천의 중심 찾기
             
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             blue = find_blue(img_hsv)
             
             if blue==0 :
                 drone.sendControlPosition16(0, 0, -5, 5, 0, 0) #아래로
-                sleep(1)
+                sleep(5)
 
                 blue = find_blue(img_hsv)
 
                 if blue==0 :
                     drone.sendControlPosition16(0, 0, 10, 5, 0, 0) #위로
-                    sleep(2)
+                    sleep(5)
 
                     blue = find_blue(img_hsv)
 
                     if blue==0 :
                         drone.sendControlPosition16(0, 0, -5, 5, 0, 0) #제자리로
-                        sleep(1)
+                        sleep(5)
 
                         drone.sendControlWhile(0,0,0,0,1000) #호버링
-                        sleep(1)
+                        sleep(5)
 
                         drone.sendControlPosition16(0, 5, 0, 5, 0, 0) #왼쪽으로
-                        sleep(1)
+                        sleep(5)
 
                         blue = find_blue(img_hsv)
 
                         if blue==0 :
                             drone.sendControlPosition16(0, -10, 0, 5, 0, 0) #오른쪽으로
-                            sleep(2)
+                            sleep(5)
 
                             blue = find_blue(img_hsv)
 
                             if blue==0 :
                                 drone.sendControlPosition16(0, 5, 0, 5, 0, 0) #제자리로
-                                sleep(1)
+                                sleep(5)
 
                                 drone.sendControlWhile(0,0,0,0,1000)
-                                sleep(1)
+                                sleep(5)
 
                                 drone.sendControlPosition16(0, 0, -5, 5, 0, 0) #아래로
-                                sleep(1)
+                                sleep(5)
 
                                 drone.sendControlPosition16(0, 5, 0, 5, 0, 0) #왼쪽으로
-                                sleep(1)
+                                sleep(5)
 
                                 blue = find_blue(img_hsv)
 
@@ -373,19 +373,19 @@ try:
                 
                 if cx == 0 and cy == -1 : #원의 오른쪽이 안보이는 경우
                     drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == 0 and cy == -2 : #원의 왼쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -1 and cy == 0 : #원의 위쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 elif cx == -2 and cy == 0 : #원의 아래쪽이 안보이는 경우
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
                     continue
                 else :
                     find = False
@@ -394,28 +394,28 @@ try:
                     
             if cx < 320-80 : 
                 drone.sendControlPosition16(0, 1, 0, 5, 0, 0) #왼쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)                    
+                    sleep(5)                    
             elif cx > 320+80 :
                 drone.sendControlPosition16(0, -1, 0, 5, 0, 0) #오른쪽으로 이동
-                sleep(1)
+                sleep(5)
                 if cy < 240-50 :
                     drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                    sleep(5)
                 elif cy > 240+50 :
                     drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                    sleep(1)
+                    sleep(5)
             elif cy > 240+50 :
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
-                sleep(1)
+                sleep(5)
             elif cy < 240-50 :
                 drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                sleep(1)
+                sleep(5)
             else :
                 know_center = 1
 
@@ -427,11 +427,11 @@ try:
                     a,b = check_position(img_hsv)
                     if a == 0 and b == 0 :
                         drone.sendControlPosition16(1, 0, 0, 5, 0, 0) #앞으로 0.1미터 이동
-                        sleep(1)
+                        sleep(5)
                         continue
                     else :
                         drone.sendControlPosition16(10, 0, 0, 5, 0, 0) #앞으로 1미터 이동 
-                        sleep(2)
+                        sleep(5)
                         know_center = 0
                         step = 6
                         break                       
@@ -439,7 +439,7 @@ try:
             
         elif step==6 : #6, 보라색 네모 찾기
             drone.sendControlWhile(0,0,0,0,1000) #호버링
-            sleep(1)
+            sleep(5)
 
             drone.sendLanding()
             sleep(5)
