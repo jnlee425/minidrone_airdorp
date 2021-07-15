@@ -414,8 +414,8 @@ try:
                 drone.sendControlPosition16(0, 0, -1, 5, 0, 0) #아래로 이동
                 sleep(1)
             elif cy < 240-50 :
-                    drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
-                    sleep(1)
+                drone.sendControlPosition16(0, 0, 1, 5, 0, 0) #위로 이동
+                sleep(1)
             else :
                 know_center = 1
 
